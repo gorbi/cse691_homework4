@@ -82,16 +82,21 @@ class TwoLayersNN (object):
                 # TODO: 10 points                                                       #
                 # - Use Naive Update to update weight parameter                         #
                 #########################################################################
-                pass
-
+                self.params['w1'] += -lr * grads['w1']
+                self.params['w2'] += -lr * grads['w2']
             elif self.update == 1:
                 #########################################################################
                 # TODO: 10 points                                                       #
                 # - Use Momentum Update to update weight parameter                      #
                 # - Momentum = 0.9                                                      #
                 #########################################################################
-                pass
+                mu = 0.9
 
+                self.params['VW1'] = mu * self.params['VW1'] - lr * grads['w1']
+                self.params['w1'] += self.params['VW1']
+
+                self.params['VW2'] = mu * self.params['VW2'] - lr * grads['w2']
+                self.params['w2'] += self.params['VW2']
             elif self.update == 2:
                 #########################################################################
                 # TODO: 20 points                                                       #
