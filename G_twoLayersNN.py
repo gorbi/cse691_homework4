@@ -114,15 +114,21 @@ class TwoLayersNN (object):
                 # TODO: 20 points                                                       #
                 # - Use AdaGrad Update to update weight parameter                       #
                 #########################################################################
-                pass
+                self.params['cacheW1'] += (grads['w1'] * grads['w1'])
+                self.params['w1'] += -lr * grads['w1']/(np.sqrt(self.params['cacheW1'])+1e-7)
 
+                self.params['cacheW2'] += (grads['w2'] * grads['w2'])
+                self.params['w2'] += -lr * grads['w2']/(np.sqrt(self.params['cacheW2'])+1e-7)
             elif self.update == 4:
                 #########################################################################
                 # TODO: 20 points                                                       #
                 # - Use RMSProp Update to update weight parameter                       #
                 #########################################################################
-                pass
+                self.params['cacheW1'] = decay * self.params['cacheW1'] + (1 - decay) * (grads['w1'] * grads['w1'])
+                self.params['w1'] += -lr * grads['w1']/(np.sqrt(self.params['cacheW1'])+1e-7)
 
+                self.params['cacheW2'] = decay * self.params['cacheW2'] + (1 - decay) * (grads['w2'] * grads['w2'])
+                self.params['w2'] += -lr * grads['w2']/(np.sqrt(self.params['cacheW2'])+1e-7)
             else:
                 #########################################################################
                 # TODO: 20 points                                                       #
