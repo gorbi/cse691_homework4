@@ -142,7 +142,7 @@ class TwoLayersNN (object):
                 # - Use Adam Update to update weight parameter                          #
                 # - B1 = 0.9, B2 = 0.999                                                #
                 #########################################################################
-                B1, B2 = 0.9, 0.99
+                B1, B2 = 0.9, 0.999
 
                 self.params['VW1'] = B1 * self.params['VW1'] + (1 - B1) * grads['w1']
                 self.params['cacheW1'] = B2 * self.params['cacheW1'] + (1 - B2) * (grads['w1'] * grads['w1'])
