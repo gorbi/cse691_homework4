@@ -107,8 +107,15 @@ class TwoLayersNN (object):
                 #   v = mu * v - lr * dw                                                #
                 #   w += -mu * v_prev + (1 + mu) * v                                    #
                 #########################################################################
-                pass
+                mu = 0.9
 
+                VW1_prev = self.params['VW1']
+                self.params['VW1'] = mu * self.params['VW1'] - lr * grads['w1']
+                self.params['w1'] += -mu * VW1_prev + (1 + mu) * self.params['VW1']
+
+                VW2_prev = self.params['VW2']
+                self.params['VW2'] = mu * self.params['VW2'] - lr * grads['w2']
+                self.params['w2'] += -mu * VW2_prev + (1 + mu) * self.params['VW2']
             elif self.update == 3:
                 #########################################################################
                 # TODO: 20 points                                                       #
